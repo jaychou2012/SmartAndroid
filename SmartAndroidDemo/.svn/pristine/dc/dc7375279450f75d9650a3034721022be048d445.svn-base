@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tandong.sademo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <application
+        android:name="com.tandong.sademo.zUImageLoader.UILApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.tandong.sademo.WelcomActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.MainFragmentActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.AppInfoActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.AssistToolActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.SystemInfoActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.BitmapInfoActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.verifi.NotEmptyActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.HomeActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.MainActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.zip.ZipActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.tag.SmartTagActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.gson.GsonActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.zUImageLoader.ImageListActivity"
+            android:label="@string/ac_name_image_list" />
+        <activity
+            android:name="com.tandong.sademo.zUImageLoader.HomeActivity"
+            android:label="@string/ac_name_image_list" />
+        <activity
+            android:name="com.tandong.sademo.zUImageLoader.ImageGridActivity"
+            android:label="@string/ac_name_image_grid" />
+        <activity
+            android:name="com.tandong.sademo.zUImageLoader.ImagePagerActivity"
+            android:label="@string/ac_name_image_pager" />
+        <activity
+            android:name="com.tandong.sademo.zUImageLoader.ImageGalleryActivity"
+            android:label="@string/ac_name_image_gallery" />
+
+        <!-- Widget -->
+        <receiver android:name="com.tandong.sademo.zUImageLoader.UILWidgetProvider" >
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.tandong.sademo.zmImageView.StandardImageProgrammaticWithOnClick" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.StandardImageProgrammaticWithStartSettings" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.StandardImageProgrammatic" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.StandardImageXML" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.StandardImageXMLWithStartSettings" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.DoubleImage" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenter" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterCrop" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterInside" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterSmall" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterCropSmall" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterInsideSmall" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterSquare" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterCropSquare" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterInsideSquare" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterPortrait" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterCropPortrait" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.ScaleTypeCenterInsidePortrait" >
+        </activity>
+        <activity android:name="com.tandong.sademo.cropper.MainActivity" >
+        </activity>
+        <activity android:name="com.tandong.sademo.zmImageView.Main" >
+        </activity>
+        <activity android:name="com.tandong.sademo.anim.Demos" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.Toggles"
+            android:label="Toggles" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.VPADemo"
+            android:label="ViewPropertyAnimator Demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+
+        <!-- API DEMOS -->
+        <activity
+            android:name="com.tandong.sademo.anim.AnimationCloning"
+            android:label="API Demos/Animation Cloning" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.AnimationLoading"
+            android:label="API Demos/Animation Loading" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.AnimationSeeking"
+            android:label="API Demos/Animation Seeking" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.AnimatorEvents"
+            android:label="API Demos/Animator Events" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.BouncingBalls"
+            android:label="API Demos/Bouncing Balls" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.CustomEvaluator"
+            android:label="API Demos/Custom Evaluator" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.MultiPropertyAnimation"
+            android:label="API Demos/Multi-Property Animation" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.anim.ReversingAnimation"
+            android:label="API Demos/Reversing Animation" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+
+        <!-- DROID FLAKES -->
+        <activity
+            android:name="com.tandong.sademo.anim.Droidflakes"
+            android:label="Droid Flakes" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+
+        <!-- PATH ANIMATION -->
+        <activity
+            android:name="com.tandong.sademo.anim.PathAnimationActivity"
+            android:label="Path Animation" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.tandong.sademo.anim.SAMPLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.reflect.ReflectActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.simulate.SimulateClickActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.eventbuspkotto.TestRunnerActivity"
+            android:label="@string/app_name"
+            android:process="test.runner" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.eventbuspkotto.TestSetupActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.otto.LocationActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.aq.AqueryActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.tandong.sademo.view.ListViewActivity" />
+        <activity android:name="com.tandong.sademo.view.ScrollViewActivity" />
+        <activity android:name="com.tandong.sademo.view.SmartingScrollActivity" />
+        <activity
+            android:name="com.tandong.sademo.view.AutoRefreshListViewActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.tandong.sademo.avatar.AvatarActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity android:name="com.tandong.sademo.stagger.StaggeredGridActivity" />
+        <activity android:name="com.tandong.sademo.stagger.StaggeredGridActivityFragment" />
+        <activity android:name="com.tandong.sademo.stagger.StaggeredGridEmptyViewActivity" />
+        <activity android:name="com.tandong.sademo.stagger.ListViewActivity" />
+        <activity android:name="com.tandong.sademo.stagger.StaggerActivity" />
+        <activity android:name="com.tandong.sademo.view.PLListViewActivity" >
+        </activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+    </application>
+
+</manifest>

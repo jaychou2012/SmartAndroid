@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="pull_refresh_textview">#000000</color>
+    <color name="gold">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="skhd_group_line">#c7c8c9</color>
+    <color name="skhd_group_bg">#f9f9f9</color>
+    <color name="skhd_book_bg">#f8f6fa</color>
+    <color name="skhd_date">#53c2e9</color>
+    <color name="skhd_gray">#9aa1aa</color>
+    <color name="topbar_separator">#8B1A1A</color>
+    <color name="topbar_title">#FFFFFF</color>
+    <color name="topbar_background_start">#8B1A1A</color>
+    <color name="topbar_background_end">#CD2626</color>
+    <color name="topbar_background_item_pressed_start">#FF7F00</color>
+    <color name="topbar_background_item_pressed_end">#EE7600</color>
+    <color name="actionbar_separator">#8B1A1A</color>
+    <color name="actionbar_title">#FFFFFF</color>
+    <color name="actionbar_background_start">#e25e91</color>
+    <color name="actionbar_background_end">#e25e91</color>
+    <color name="actionbar_background_item_pressed_start">#FF7F00</color>
+    <color name="actionbar_background_item_pressed_end">#EE7600</color>
+    <color name="forget_pressed">#A2A2A2</color>
+    <color name="reg_normal">#0079FF</color>
+    <color name="reg_pressed">#0156b3</color>
+    <color name="gray">#C4C4C4</color>
+    <color name="blue">#33b5e5</color>
+    <color name="darkblue">#0099cc</color>
+    <color name="red">#ff4444</color>
+    <color name="grayStart">#adadad</color>
+    <color name="grayEnd">#ffffff</color>
+    <color name="bg_handle_pressed">#a0a0a0</color>
+    <color name="black_translucent">#50000000</color>
+    <color name="selector_ss_pressed">#9933cc</color>
+    <color name="selector_ss_default">#aa66cc</color>
+    <color name="selector_button_pressed">#9933cc</color>
+    <color name="selector_button_default">#aa66cc</color>
+    <color name="avatar_border">#FFFFFF</color>
+    <color name="list_item_pressed">#1A000000</color>
+    <color name="orange">#ffffdc7e</color>
+    <color name="grey">#ffd3d3d3</color>
+    <color name="green">#ff8dd304</color>
+    <color name="yellow">#fffffbae</color>
+
+</resources>

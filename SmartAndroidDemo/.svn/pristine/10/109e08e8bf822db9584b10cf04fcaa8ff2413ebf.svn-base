@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tandong.sa.view.ReScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/actionbar_background"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="SmartAndroid"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <com.tandong.sa.view.SmartListView
+            android:id="@+id/lv_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:listSelector="@drawable/menu_selector" >
+        </com.tandong.sa.view.SmartListView>
+    </LinearLayout>
+
+</com.tandong.sa.view.ReScrollView>

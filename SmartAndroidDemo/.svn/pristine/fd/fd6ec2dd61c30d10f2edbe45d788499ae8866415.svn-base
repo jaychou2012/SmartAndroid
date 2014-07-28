@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">5dp</dimen>
+
+    <integer name="num_cols">1</integer>
+
+    <dimen name="actionbar_height">45dip</dimen>
+    <dimen name="actionbar_item_height">45dip</dimen>
+    <dimen name="actionbar_item_width">45dip</dimen>
+    <dimen name="topbar_height">45dip</dimen>
+    <dimen name="topbar_item_height">45dip</dimen>
+    <dimen name="topbar_item_width">45dip</dimen>
+    <dimen name="item_height">67dp</dimen>
+    <dimen name="section_div_height">20dp</dimen>
+    <dimen name="holo_gap">8dp</dimen>
+    <dimen name="avatar_round_border_size">2dp</dimen>
+    <dimen name="avatar_square_border_size">2dp</dimen>
+    <dimen name="size_default_height">160dp</dimen>
+
+</resources>

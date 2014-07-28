@@ -1,0 +1,276 @@
+package com.tandong.sademo;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.tandong.sa.activity.SmartActivity;
+import com.tandong.sa.aq.AQuery;
+import com.tandong.sa.bv.BelowView;
+import com.tandong.sa.bv.BottomView;
+import com.tandong.sa.slideMenu.SlidingMenu;
+import com.tandong.sa.slideMenu.SlidingMenu.OnOpenListener;
+import com.tandong.sa.topbar.TopBar;
+import com.tandong.sa.topbar.TopBar.Action;
+import com.tandong.sa.view.SmartListView;
+import com.tandong.sademo.adapter.BVAdapter;
+import com.tandong.sademo.adapter.MenuAdapter;
+import com.tandong.sademo.anim.Demos;
+import com.tandong.sademo.avatar.AvatarActivity;
+import com.tandong.sademo.cropper.MainActivity;
+import com.tandong.sademo.eventbuspkotto.TestSetupActivity;
+import com.tandong.sademo.otto.LocationActivity;
+import com.tandong.sademo.reflect.ReflectActivity;
+import com.tandong.sademo.simulate.SimulateClickActivity;
+import com.tandong.sademo.stagger.StaggerActivity;
+import com.tandong.sademo.tag.SmartTagActivity;
+import com.tandong.sademo.util.Common;
+import com.tandong.sademo.verifi.NotEmptyActivity;
+import com.tandong.sademo.view.AutoRefreshListViewActivity;
+import com.tandong.sademo.view.PLListViewActivity;
+import com.tandong.sademo.view.SmartingScrollActivity;
+import com.tandong.sademo.zip.ZipActivity;
+import com.tandong.sademo.zmImageView.Main;
+
+public class HomeActivity extends SmartActivity implements OnClickListener, OnItemClickListener {
+
+	private TopBar tb;
+	private SlidingMenu menu;
+	private SmartListView lv_menu;
+	private MenuAdapter menuAdapter;
+	private ArrayList<String> menus;
+	private Animation animationMenu;
+	private BelowView blv;
+	private BottomView bv;
+	private AQuery aq;
+	private boolean bvIsShow = true;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_home);
+		initTop();
+		initMenu();
+		initView();
+	}
+
+	private void initView() {
+		aq = new AQuery(this);
+		aq.id(R.id.tv_bv).clicked(this);
+		aq.id(R.id.tv_blv).clicked(this);
+		aq.id(R.id.tv_eventbus).clicked(this);
+		aq.id(R.id.tv_otto).clicked(this);
+		aq.id(R.id.tv_autoview).clicked(this);
+		aq.id(R.id.tv_autorefresh).clicked(this);
+		aq.id(R.id.tv_avatar).clicked(this);
+		aq.id(R.id.tv_stagger).clicked(this);
+		aq.id(R.id.tv_pl).clicked(this);
+	}
+
+	private void initMenu() {
+
+		menu = new SlidingMenu(this);
+		menu.setMode(SlidingMenu.LEFT_RIGHT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		menu.setShadowWidthRes(R.dimen.shadow_width);
+		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		menu.setBehindWidth(360);
+		menu.setFadeDegree(0.35f);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		menu.setMenu(R.layout.layout_menu);
+		menu.setSecondaryMenu(R.layout.layout_menu);// 设置右侧菜单
+		menu.setSecondaryShadowDrawable(R.drawable.shadow);// 设置右侧菜单阴影的图片资源
+		lv_menu = (SmartListView) menu.findViewById(R.id.lv_menu);
+		menu.setOnOpenListener(ool);
+		lv_menu.setOnItemClickListener(this);
+
+	}
+
+	private void initTop() {
+		tb = (TopBar) this.findViewById(R.id.topbar);
+		tb.setTitle("SmartAndroid");
+		tb.addAction(new Action() {
+
+			@Override
+			public void performAction(View arg0) {
+
+			}
+
+			@Override
+			public int getDrawable() {
+				// TODO Auto-generated method stub
+				return R.drawable.tianjia;
+			}
+		});
+		tb.setHomeAction(new Action() {
+
+			@Override
+			public void performAction(View view) {
+				menu.toggle();
+			}
+
+			@Override
+			public int getDrawable() {
+
+				return R.drawable.zhankaikuaitui;
+			}
+		});
+		initInfo();
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_bv:
+			initBottomView();
+			break;
+
+		case R.id.tv_blv:
+			blv = new BelowView(HomeActivity.this, R.layout.layout_belowview);
+			blv.showBelowView(v, true, 30, 0);
+			break;
+		case R.id.tv_eventbus:
+			gotoActivity(TestSetupActivity.class, false);
+			break;
+		case R.id.tv_otto:
+			gotoActivity(LocationActivity.class, false);
+			break;
+		case R.id.tv_autoview:
+			gotoActivity(SmartingScrollActivity.class, false);
+			break;
+		case R.id.tv_autorefresh:
+			gotoActivity(AutoRefreshListViewActivity.class, false);
+			break;
+		case R.id.tv_avatar:
+			gotoActivity(AvatarActivity.class, false);
+			break;
+		case R.id.tv_stagger:
+			gotoActivity(StaggerActivity.class, false);
+			break;
+		case R.id.tv_pl:
+			gotoActivity(PLListViewActivity.class, false);
+			break;
+		default:
+			break;
+		}
+	}
+
+	OnOpenListener ool = new OnOpenListener() {
+
+		@Override
+		public void onOpen() {
+			menus = new ArrayList<String>();
+
+			menus.add("首页");
+			menus.add("SmartTag");
+			menus.add("zUImageLoader");
+			menus.add("ZoomImageView");
+			menus.add("Cropper");
+			menus.add("动画特效");
+			menus.add("Actionbarsherlock");
+			menuAdapter = new MenuAdapter(HomeActivity.this, menus);
+			lv_menu.setAdapter(menuAdapter);
+			animationMenu = AnimationUtils.loadAnimation(HomeActivity.this, R.anim.anim_menu_list);
+			LayoutAnimationController lac = new LayoutAnimationController(animationMenu);
+			lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
+			lv_menu.setLayoutAnimation(lac);
+
+		}
+	};
+
+	private void initBottomView() {
+		ListView lv_menu_list;
+		final ArrayList<String> menus = new ArrayList<String>();
+		menus.add("解压缩框架");
+		menus.add("非空验证框架");
+		menus.add("模拟点击框架");
+		menus.add("映射框架");
+		menus.add("关于");
+
+		bv = new BottomView(HomeActivity.this, R.style.BottomViewTheme_Defalut, R.layout.bottom_view);
+		bv.setAnimation(R.style.BottomToTopAnim);
+
+		bv.showBottomView(true);
+		lv_menu_list = (ListView) bv.getView().findViewById(R.id.lv_list);
+		BVAdapter adapter = new BVAdapter(HomeActivity.this, menus);
+		lv_menu_list.setAdapter(adapter);
+		lv_menu_list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				String s_menu = menus.get(arg2);
+				if (s_menu.contains("非空验证框架")) {
+					gotoActivity(NotEmptyActivity.class, false);
+				} else if (s_menu.contains("解压缩框架")) {
+					gotoActivity(ZipActivity.class, false);
+				} else if (s_menu.contains("映射框架")) {
+					gotoActivity(ReflectActivity.class, false);
+				} else if (s_menu.contains("模拟点击框架")) {
+					gotoActivity(SimulateClickActivity.class, false);
+				}
+				bv.dismissBottomView();
+
+			}
+		});
+	}
+
+	private long firstTime = 0;
+
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondTime = System.currentTimeMillis();
+			if (secondTime - firstTime > 800) {
+				Toast.makeText(HomeActivity.this, "再按一次返回键退出...", 1000).show();
+				firstTime = secondTime;
+				return true;
+			} else {
+				System.exit(0);
+
+			}
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			print(keyCode + "");
+			initBottomView();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+		String menu = menus.get(position);
+		if (menu.contains("SmartTag")) {
+			gotoActivity(SmartTagActivity.class, false);
+		} else if (menu.contains("zUImageLoader")) {
+			gotoActivity(com.tandong.sademo.zUImageLoader.HomeActivity.class, false);
+		} else if (menu.contains("ZoomImageView")) {
+			gotoActivity(Main.class, false);
+		} else if (menu.contains("Cropper")) {
+			gotoActivity(MainActivity.class, false);
+		} else if (menu.contains("动画特效")) {
+			gotoActivity(Demos.class, false);
+		}
+
+	}
+
+	private void initInfo() {
+		Common.common(this);
+	}
+}

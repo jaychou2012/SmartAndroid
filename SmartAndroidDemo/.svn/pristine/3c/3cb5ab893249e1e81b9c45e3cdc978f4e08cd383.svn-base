@@ -1,0 +1,210 @@
+package com.tandong.sademo;
+
+import java.util.ArrayList;
+
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.tandong.sa.activity.SmartActivity;
+import com.tandong.sa.aq.AQuery;
+import com.tandong.sa.bv.BelowView;
+import com.tandong.sa.bv.BottomView;
+import com.tandong.sa.slideMenu.SlidingMenu;
+import com.tandong.sa.slideMenu.SlidingMenu.OnOpenListener;
+import com.tandong.sa.topbar.TopBar;
+import com.tandong.sa.topbar.TopBar.Action;
+import com.tandong.sa.view.SmartListView;
+import com.tandong.sademo.adapter.BVAdapter;
+import com.tandong.sademo.adapter.MenuAdapter;
+import com.tandong.sademo.verifi.NotEmptyActivity;
+import com.tandong.sademo.zip.ZipActivity;
+
+public class HomeActivity extends SmartActivity implements OnClickListener {
+
+	private TopBar tb;
+	private SlidingMenu menu;
+	private SmartListView lv_menu;
+	private MenuAdapter menuAdapter;
+	private ArrayList<String> menus;
+	private Animation animationMenu;
+	private BelowView blv;
+	private BottomView bv;
+	private AQuery aq;
+	private boolean bvIsShow = true;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_home);
+		initTop();
+		initMenu();
+		initView();
+	}
+
+	private void initView() {
+		aq = new AQuery(this);
+		aq.id(R.id.tv_bv).clicked(this);
+		aq.id(R.id.tv_blv).clicked(this);
+	}
+
+	private void initMenu() {
+
+		menu = new SlidingMenu(this);
+		menu.setMode(SlidingMenu.LEFT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		menu.setShadowWidthRes(R.dimen.shadow_width);
+		menu.setShadowDrawable(R.drawable.shadow);
+		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		menu.setBehindWidth(360);
+		menu.setFadeDegree(0.35f);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+		menu.setMenu(R.layout.layout_menu);
+		lv_menu = (SmartListView) menu.findViewById(R.id.lv_menu);
+		menu.setOnOpenListener(ool);
+
+	}
+
+	private void initTop() {
+		tb = (TopBar) this.findViewById(R.id.topbar);
+		tb.setTitle("SmartAndroid");
+		tb.addAction(new Action() {
+
+			@Override
+			public void performAction(View arg0) {
+
+			}
+
+			@Override
+			public int getDrawable() {
+				// TODO Auto-generated method stub
+				return R.drawable.xrw_pic09;
+			}
+		});
+		tb.setHomeAction(new Action() {
+
+			@Override
+			public void performAction(View view) {
+				menu.toggle();
+			}
+
+			@Override
+			public int getDrawable() {
+
+				return R.drawable.menu_icon;
+			}
+		});
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_bv:
+			initBottomView();
+			break;
+
+		case R.id.tv_blv:
+			blv = new BelowView(HomeActivity.this, R.layout.layout_belowview);
+			blv.showBelowView(v, true);
+			break;
+		default:
+			break;
+		}
+	}
+
+	OnOpenListener ool = new OnOpenListener() {
+
+		@Override
+		public void onOpen() {
+			menus = new ArrayList<String>();
+
+			menus.add("首页");
+			menus.add("灵狐贴吧");
+			menus.add("课外活动");
+			menus.add("书刊互动");
+			menus.add("学习园地");
+			menus.add("星人物");
+			menus.add("精品商城");
+			menuAdapter = new MenuAdapter(HomeActivity.this, menus);
+			lv_menu.setAdapter(menuAdapter);
+			animationMenu = AnimationUtils.loadAnimation(HomeActivity.this,
+					R.anim.anim_menu_list);
+			LayoutAnimationController lac = new LayoutAnimationController(
+					animationMenu);
+			lac.setOrder(LayoutAnimationController.ORDER_NORMAL);
+			lv_menu.setLayoutAnimation(lac);
+
+		}
+	};
+
+	private void initBottomView() {
+		ListView lv_menu_list;
+		final ArrayList<String> menus = new ArrayList<String>();
+		menus.add("解压缩框架");
+		menus.add("非空验证框架");
+		menus.add("模拟点击框架");
+		menus.add("映射框架");
+		menus.add("关于");
+
+		bv = new BottomView(HomeActivity.this, R.style.BottomViewTheme_Defalut,
+				R.layout.bottom_view);
+		bv.setAnimation(R.style.BottomToTopAnim);
+
+		bv.showBottomView(true);
+		lv_menu_list = (ListView) bv.getView().findViewById(R.id.lv_list);
+		BVAdapter adapter = new BVAdapter(HomeActivity.this, menus);
+		lv_menu_list.setAdapter(adapter);
+		lv_menu_list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				String s_menu = menus.get(arg2);
+				if (s_menu.contains("非空验证框架")) {
+					gotoActivity(NotEmptyActivity.class, false);
+				} else if (s_menu.contains("解压缩框架")) {
+					gotoActivity(ZipActivity.class, false);
+				}
+				bv.dismissBottomView();
+
+			}
+		});
+	}
+
+	private long firstTime = 0;
+
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondTime = System.currentTimeMillis();
+			if (secondTime - firstTime > 800) {
+				Toast.makeText(HomeActivity.this, "再按一次返回键退出...", 1000).show();
+				firstTime = secondTime;
+				return true;
+			} else {
+				System.exit(0);
+
+			}
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			print(keyCode + "");
+			initBottomView();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+}
